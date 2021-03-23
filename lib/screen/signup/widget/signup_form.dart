@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:hamstring_trainer_app/screen/login/login_screen.dart';
 import 'package:hamstring_trainer_app/widget/custom_text_field.dart';
 import 'package:hamstring_trainer_app/widget/primary_button.dart';
 
@@ -49,6 +50,7 @@ class SignupForm extends StatelessWidget {
         ),
         PrimaryButton(
           label: "Signup",
+          onTap: () => Navigator.of(context).pushNamed(LoginScreen.routeName),
         )
       ],
     );
