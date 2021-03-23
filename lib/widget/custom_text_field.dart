@@ -4,6 +4,7 @@ import 'package:hamstring_trainer_app/constants.dart';
 
 class CustomTextField extends StatelessWidget {
   final String hintText;
+  final String? Function(String?)? validator;
   // final Function validator, onSaved, onChanged;
   final TextInputType keyboardType;
   final bool obscureText;
@@ -19,6 +20,7 @@ class CustomTextField extends StatelessWidget {
       // this.onSaved,
       this.enabled = true,
       this.initialValue = '',
+      this.validator,
       // this.onChanged,
       this.textfieldIcon = const Icon(Icons.person)});
 
@@ -29,7 +31,7 @@ class CustomTextField extends StatelessWidget {
       child: TextFormField(
         enabled: enabled,
         initialValue: initialValue,
-        // validator: validator,
+        validator: validator,
         // onSaved: onSaved,
         // onChanged: onChanged,
         keyboardType: keyboardType,

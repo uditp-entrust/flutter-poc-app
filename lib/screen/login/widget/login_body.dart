@@ -7,8 +7,9 @@ import 'package:hamstring_trainer_app/screen/login/widget/login_form.dart';
 
 class LoginBody extends StatelessWidget {
   final GlobalKey<FormState> formKey;
+  final void Function(BuildContext) submit;
 
-  LoginBody({required this.formKey});
+  LoginBody({required this.formKey, required this.submit});
 
   @override
   Widget build(BuildContext context) {
@@ -41,7 +42,7 @@ class LoginBody extends StatelessWidget {
             ),
             Form(
               key: formKey,
-              child: LoginForm(),
+              child: LoginForm(submit: submit),
             ),
             Container(
               margin: EdgeInsets.only(top: 22),

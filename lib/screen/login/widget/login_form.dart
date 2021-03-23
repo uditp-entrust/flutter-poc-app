@@ -1,9 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:hamstring_trainer_app/screen/user_profile/user_profile_screen.dart';
+
 import 'package:hamstring_trainer_app/widget/custom_text_field.dart';
 import 'package:hamstring_trainer_app/widget/primary_button.dart';
 
 class LoginForm extends StatelessWidget {
+  final void Function(BuildContext) submit;
+
+  LoginForm({required this.submit});
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -15,15 +19,26 @@ class LoginForm extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
               CustomTextField(
-                hintText: "Email",
-                textfieldIcon: Icon(Icons.email),
-                keyboardType: TextInputType.emailAddress,
-              ),
+                  hintText: "Email",
+                  textfieldIcon: Icon(Icons.email),
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Required field';
+                    }
+                    if (!value.contains('@')) {
+                      return 'Invalid email!';
+                    }
+                  }),
               CustomTextField(
-                hintText: "Password",
-                textfieldIcon: Icon(Icons.lock),
-                obscureText: true,
-              )
+                  hintText: "Password",
+                  textfieldIcon: Icon(Icons.lock),
+                  obscureText: true,
+                  validator: (value) {
+                    if (value!.isEmpty) {
+                      return 'Required field';
+                    }
+                  })
             ],
           ),
         ),
@@ -32,8 +47,7 @@ class LoginForm extends StatelessWidget {
         ),
         PrimaryButton(
           label: "Login",
-          onTap: () =>
-              Navigator.of(context).pushNamed(UserProfileScreen.routeName),
+          onTap: () => submit(context),
         )
       ],
     );
